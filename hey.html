@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+      text-align: center;
+      justify-content: center;
+    }
+    header {
+      background-color: #87CEEB;
+      color: #000000;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      color: #4682B4;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .instructions, .tasks {
+      margin-top: 20px;
+    }
+    .task-input {
+      margin-top: 10px;
+    }
+    .task-input input {
+      padding: 5px;
+      width: 200px;
+    }
+    .task-input button {
+      padding: 5px 10px;
+      background-color: #87CEEB;
+      color: #000000;
+      border: none;
+    }
+    ul {
+      margin-top: 10px;
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background-color: #ffffff;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+    }
+    li::before {
+      content: "✓";
+      color: #4682B4;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #87CEEB;
+      color: #000000;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Accessible To-Do List</h1>
+  </header>
+  <nav style="margin-top: 20px; font-size: 30px;">
+    <a href="#">Home</a>
+    <a href="#instruc">Instructions</a>
+    <a href="#tasks">My Tasks</a>
+  </nav>
+
+  <div class="instructions" id="instruc" style="background-color: bisque; border-radius: 15px; padding: 100px; text-align: start;"> 
+    <h2>Instructions</h2>
+    <p>Use the form below to add tasks. Use the keyboard (Tab/Enter) to navigate and interact.</p>
+  </div>
+
+  <div class="tasks" id="tasks" style="background-color: bisque; border-radius: 15px; padding: 100px; text-align: start;">
+    <h2>My Tasks</h2>
+    <div class="task-input">
+      <input type="text" id="taskInput" placeholder="Enter task" onkeypress="handleKeyPress(event)" />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+    <ul id="taskList">
+      <li>vacuum</li>
+    </ul>
+  </div>
+
+  <footer>
+    &copy; 2025 Accessible To-Do List. All rights reserved.
+  </footer>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const taskText = input.value.trim();
+      if (taskText) {
+        const li = document.createElement('li');
+        li.textContent = taskText;
+        document.getElementById('taskList').appendChild(li);
+        input.value = '';
+      }
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        addTask();
+      }
+    }
+  </script>
+</body>
+</html>
